@@ -1,5 +1,5 @@
  <h4>
-     fork of [this](https://github.com/manzeloth) awesome repo :)
+     fork of this <a href="https://github.com/manzeloth">awesome repo</a> :)
  </h4>
  <h4>feature</h4>
     * added command line options for live-server command
