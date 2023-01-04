@@ -8,17 +8,18 @@
 " Functions to call live-server npm package.
 function! LiveServer(action)
 
+    let command = "live-server --no-browser --port=5500"
     " Starts live-server in a new buffer in the background.
     if a:action == "start"
         tabe 
-        term live-server
+        execute "term ".command
         tabclose
         echo "Started a new live-server (npm) instance."
 
     " Delete all buffers running live-server.
     elseif a:action == "stop"
-        let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && bufname(v:val) =~ "\.'."live-server".'$"')
-        if empty(buffers) |throw "no *."."live-server"." buffer" | endif
+        let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && bufname(v:val) =~ "\.'.command.'$"')
+        if empty(buffers) |throw "no *.".command." buffer" | endif
         exe 'bd! '.join(buffers, ' ')
         echo "Stopped all live-server instances (npm)."
 
